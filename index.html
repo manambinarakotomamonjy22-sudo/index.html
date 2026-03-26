@@ -1,212 +1,229 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="mg">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Barea DLS Kits | Portfolio Officiel</title>
+    <title>Portfolio DLS Kits & Logos | Madagascar</title>
     <style>
-        /* --- STYLE CSS --- */
+        /* --- STYLE CSS COMPLET --- */
+        :root {
+            --primary-red: #e63946;    /* Rouge Barea */
+            --secondary-green: #2a9d8f; /* Vert Success */
+            --dark-bg: #1a1a1a;
+            --light-bg: #f4f7f6;
+            --text-dark: #2c3e50;
+        }
+
         body {
             font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             margin: 0;
-            background-color: #f4f7f6;
-            color: #2c3e50;
+            background-color: var(--light-bg);
+            color: var(--text-dark);
         }
 
+        /* En-tête */
         header {
-            background: linear-gradient(135deg, #1e1e1e 0%, #444 100%);
+            background: linear-gradient(135deg, var(--dark-bg) 0%, #333 100%);
             color: white;
             text-align: center;
-            padding: 70px 20px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+            padding: 60px 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
 
         header h1 {
             margin: 0;
             font-size: 2.8rem;
-            letter-spacing: 1.5px;
+            letter-spacing: 1px;
             text-transform: uppercase;
         }
 
         header p {
             margin: 10px 0 0;
+            opacity: 0.8;
             font-size: 1.1rem;
-            opacity: 0.9;
         }
 
+        /* Grille Responsives */
         .grid-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 35px;
-            padding: 50px;
-            max-width: 1250px;
+            padding: 50px 20px;
+            max-width: 1300px;
             margin: 0 auto;
         }
 
-        /* Carte du Kit */
+        /* Carte du Kit/Logo */
         .card {
             background: white;
-            border-radius: 18px;
+            border-radius: 16px;
             overflow: hidden;
             box-shadow: 0 6px 25px rgba(0,0,0,0.07);
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
             border: 1px solid #e1e8ed;
+            display: flex;
+            flex-direction: column;
         }
 
         .card:hover {
-            transform: translateY(-12px);
-            box-shadow: 0 18px 45px rgba(0,0,0,0.18);
+            transform: translateY(-10px);
+            box-shadow: 0 18px 45px rgba(0,0,0,0.15);
         }
 
+        /* Conteneur d'Image avec effet Zoom */
         .image-container {
             width: 100%;
             overflow: hidden;
             background: #fdfdfd;
-            aspect-ratio: 1 / 1;
-            position: relative;
-        }
-
-        /* Badge de validation 512x512 */
-        .status-badge {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            background-color: rgba(46, 204, 113, 0.9);
-            color: white;
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.7rem;
-            font-weight: bold;
-            letter-spacing: 0.5px;
-            z-index: 10;
+            aspect-ratio: 1 / 1; /* Force le carré */
+            border-bottom: 1px solid #eee;
         }
 
         .kit-preview {
             width: 100%;
             height: 100%;
-            object-fit: contain;
-            transition: transform 0.6s ease;
+            object-fit: contain; /* S'assure que tout le kit est visible */
+            transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+            padding: 10px; /* Petit espace interne */
+            box-sizing: border-box;
         }
 
         .card:hover .kit-preview {
-            transform: scale(1.08);
+            transform: scale(1.1) rotate(1deg);
         }
 
+        /* Informations de la Carte */
         .card-info {
             padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
         }
 
         .card-info h3 {
-            margin: 0 0 18px 0;
-            font-size: 1.35rem;
+            margin: 0 0 8px 0;
+            font-size: 1.4rem;
             color: #1a1a1a;
-            font-weight: 700;
         }
 
-        /* Zone de lien et bouton */
+        .compatibility-badge {
+            display: inline-block;
+            background-color: #e8f5e9;
+            color: #2e7d32;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        /* Zone d'action (Lien + Bouton) */
         .action-box {
             display: flex;
             flex-direction: column;
             gap: 12px;
+            margin-top: auto;
         }
 
         .kit-url {
             width: 100%;
             padding: 12px;
-            border: 1px dashed #ced4da;
+            border: 1px dashed #b0bec5;
             border-radius: 8px;
-            background: #f8f9fa;
+            background: #fafafa;
             font-size: 0.8rem;
-            color: #6c757d;
+            color: #546e7a;
             box-sizing: border-box;
-            font-family: 'Courier New', Courier, monospace;
+            cursor: text;
         }
 
         .btn-copy {
-            background-color: #e63946; /* Rouge Madagascar */
+            background-color: var(--primary-red);
             color: white;
             border: none;
             padding: 14px;
             border-radius: 10px;
-            font-weight: 700;
+            font-weight: bold;
             cursor: pointer;
             transition: all 0.3s ease;
             text-transform: uppercase;
-            font-size: 0.9rem;
-            letter-spacing: 1px;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
         }
 
         .btn-copy:hover {
             background-color: #c1272d;
-            box-shadow: 0 5px 15px rgba(230, 57, 70, 0.4);
+            box-shadow: 0 5px 15px rgba(230, 57, 70, 0.3);
         }
 
+        /* État "Copié" du bouton */
         .btn-success {
-            background-color: #2a9d8f !important;
-            box-shadow: 0 5px 15px rgba(42, 157, 143, 0.4) !important;
+            background-color: var(--secondary-green) !important;
+            box-shadow: 0 5px 15px rgba(42, 157, 143, 0.3) !important;
         }
 
-        @media (max-width: 650px) {
-            .grid-container {
-                padding: 20px;
-                gap: 25px;
-            }
-            header {
-                padding: 50px 15px;
-            }
-            header h1 {
-                font-size: 2rem;
-            }
+        /* Responsive fixes */
+        @media (max-width: 600px) {
+            header h1 { font-size: 2rem; }
+            .grid-container { padding: 30px 15px; gap: 25px; }
+            .card-info { padding: 20px; }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>DLS KITS & LOGOS</h1>
-        <p>Collection premium pour Madagascar Barea</p>
+        <h1>DLS Kits & Logos</h1>
+        <p>Collection exclusive pour Dream League Soccer | Madagascar</p>
     </header>
 
     <main class="grid-container">
         
         <div class="card">
             <div class="image-container">
-                <span class="status-badge">VALIDE 512x512</span>
-                <img src="1ère-mailllot.jpg" alt="DLS Kit Madagascar Domicile" class="kit-preview">
+                <img src="44206.jpg" alt="DLS Kit Madagascar Home" class="kit-preview">
             </div>
             <div class="card-info">
-                <h3>Barea Domicile 25-26</h3>
+                <div>
+                    <h3>Barea Madagascar Home 25-26</h3>
+                    <span class="compatibility-badge">✅ Vérifié 512x512</span>
+                </div>
                 <div class="action-box">
-                    <input type="text" value="" data-filename="1ère-mailllot.jpg" class="kit-url" readonly>
-                    <button class="btn-copy" onclick="copyLink(this)">Copier le lien</button>
+                    <input type="text" value="" data-filename="44206.jpg" class="kit-url" readonly title="Lien automatique pour DLS">
+                    <button class="btn-copy" onclick="copyLink(this)">Copier le lien du kit</button>
                 </div>
             </div>
         </div>
 
         <div class="card">
             <div class="image-container">
-                <span class="status-badge">VALIDE 512x512</span>
-                <img src="2ème-mailllot.jpg" alt="DLS Kit Madagascar Extérieur" class="kit-preview">
+                <img src="2ème-mailllot.jpg" alt="DLS Kit Madagascar Away" class="kit-preview">
             </div>
             <div class="card-info">
-                <h3>Barea Extérieur 25-26</h3>
+                <div>
+                    <h3>Barea Madagascar Away 25-26</h3>
+                    <span class="compatibility-badge">✅ Vérifié 512x512</span>
+                </div>
                 <div class="action-box">
-                    <input type="text" value="" data-filename="2ème-mailllot.jpg" class="kit-url" readonly>
-                    <button class="btn-copy" onclick="copyLink(this)">Copier le lien</button>
+                    <input type="text" value="" data-filename="2ème-mailllot.jpg" class="kit-url" readonly title="Lien automatique pour DLS">
+                    <button class="btn-copy" onclick="copyLink(this)">Copier le lien du kit</button>
                 </div>
             </div>
         </div>
 
         <div class="card">
             <div class="image-container">
-                <span class="status-badge">VALIDE 512x512</span>
                 <img src="Logo-fosa.jpg" alt="DLS Logo Fosa Juniors" class="kit-preview">
             </div>
             <div class="card-info">
-                <h3>Logo Fosa Juniors</h3>
+                <div>
+                    <h3>Logo Fosa Juniors FC</h3>
+                    <span class="compatibility-badge">✅ Vérifié 512x512</span>
+                </div>
                 <div class="action-box">
-                    <input type="text" value="" data-filename="Logo-fosa.jpg" class="kit-url" readonly>
-                    <button class="btn-copy" onclick="copyLink(this)">Copier le lien</button>
+                    <input type="text" value="" data-filename="Logo-fosa.jpg" class="kit-url" readonly title="Lien automatique pour DLS">
+                    <button class="btn-copy" onclick="copyLink(this)">Copier le lien du logo</button>
                 </div>
             </div>
         </div>
@@ -214,33 +231,51 @@
     </main>
 
     <script>
-        // --- SCRIPT D'AUTOMATISATION DES LIENS ---
+        // --- SCRIPT D'AUTOMATISATION DES URLS GITHUB PAGES ---
         document.addEventListener("DOMContentLoaded", function() {
+            // 1. Récupère l'URL complète de la page actuelle
             let currentUrl = window.location.href;
+            
+            // 2. Trouve le dossier racine (enlève 'index.html' si présent)
             let baseUrl = currentUrl.substring(0, currentUrl.lastIndexOf("/") + 1);
+
+            // 3. Remplit chaque champ texte avec l'URL finale
             const kitInputs = document.querySelectorAll('.kit-url');
+
             kitInputs.forEach(input => {
                 const filename = input.getAttribute('data-filename');
                 if(filename) {
+                    // Combine la base URL détectée avec le nom du fichier spécifique
                     input.value = baseUrl + filename;
                 }
             });
         });
 
-        // --- FONCTION DE COPIE ---
+        // --- FONCTION DE COPIE INTERACTIVE ---
         function copyLink(btn) {
+            // Trouve l'input associé à ce bouton
             const input = btn.previousElementSibling;
+            
+            // Sélectionne et copie le texte
             input.select();
-            input.setSelectionRange(0, 99999); 
-            navigator.clipboard.writeText(input.value);
-            const originalText = btn.innerText;
-            btn.innerText = "Lien Copié ! ✅";
-            btn.classList.add('btn-success');
-            setTimeout(() => {
-                btn.innerText = originalText;
-                btn.classList.remove('btn-success');
-            }, 2500);
+            input.setSelectionRange(0, 99999); // Force la sélection sur mobile
+            navigator.clipboard.writeText(input.value).then(() => {
+                // Animation de succès
+                const originalText = btn.innerText;
+                btn.innerText = "Lien Copié ! ✅";
+                btn.classList.add('btn-success');
+                
+                // Reset après 2.5 secondes
+                setTimeout(() => {
+                    btn.innerText = originalText;
+                    btn.classList.remove('btn-success');
+                }, 2500);
+            }).catch(err => {
+                console.error('Erreur lors de la copie : ', err);
+                alert("Erreur lors de la copie automatique. Veuillez copier le lien manuellement.");
+            });
         }
     </script>
+
 </body>
 </html>
