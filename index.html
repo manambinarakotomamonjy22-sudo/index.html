@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="mg">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio Barea DLS Kits</title>
+    <title>Portfolio DLS Kits | Barea Madagascar</title>
     <style>
         /* --- STYLE CSS --- */
         body {
@@ -28,8 +28,8 @@
         }
 
         header p {
-            font-size: 1.1rem;
-            opacity: 0.9;
+            margin: 10px 0 0;
+            opacity: 0.8;
         }
 
         .grid-container {
@@ -60,8 +60,7 @@
             width: 100%;
             overflow: hidden;
             background: #eee;
-            /* Force un format carré pour l'image */
-            aspect-ratio: 1 / 1; 
+            aspect-ratio: 1 / 1;
         }
 
         .kit-preview {
@@ -71,7 +70,6 @@
             transition: transform 0.5s ease;
         }
 
-        /* Effet de zoom au survol de la carte */
         .card:hover .kit-preview {
             transform: scale(1.1);
         }
@@ -80,10 +78,27 @@
             padding: 20px;
         }
 
+        .title-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
         .card-info h3 {
-            margin: 0 0 15px 0;
+            margin: 0;
             font-size: 1.25rem;
             color: #2c3e50;
+        }
+
+        .badge-status {
+            background-color: #2ecc71; /* Vert DLS */
+            color: white;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 10px;
+            font-weight: bold;
+            text-transform: uppercase;
         }
 
         /* Zone de lien et bouton */
@@ -101,7 +116,7 @@
             background: #f8f9fa;
             font-size: 0.8rem;
             color: #7f8c8d;
-            box-sizing: border-box; /* Assure que le padding ne dépasse pas */
+            box-sizing: border-box;
         }
 
         .btn-copy {
@@ -122,24 +137,13 @@
             box-shadow: 0 4px 12px rgba(230, 57, 70, 0.3);
         }
 
-        /* État succès du bouton après copie */
         .btn-success {
-            background-color: #2a9d8f !important; /* Vert */
+            background-color: #2a9d8f !important;
         }
 
-        /* Responsivité mobile */
         @media (max-width: 600px) {
             .grid-container {
                 padding: 20px;
-                grid-template-columns: 1fr; /* Une seule colonne sur mobile */
-            }
-            
-            header {
-                padding: 40px 15px;
-            }
-            
-            header h1 {
-                font-size: 2rem;
             }
         }
     </style>
@@ -155,12 +159,15 @@
         
         <div class="card">
             <div class="image-container">
-                <img src="44168.jpg" alt="DLS Kit Madagascar" class="kit-preview">
+                <img src="44188.jpg" alt="DLS Kit Madagascar" class="kit-preview">
             </div>
             <div class="card-info">
-                <h3>Madagascar Barea 25-26</h3>
+                <div class="title-row">
+                    <h3>Madagascar Barea 25-26</h3>
+                    <span class="badge-status">VALID : 512x512</span>
+                </div>
                 <div class="action-box">
-                    <input type="text" value="" data-filename="44168.jpg" class="kit-url" readonly>
+                    <input type="text" value="" data-filename="44188.jpg" class="kit-url" readonly>
                     <button class="btn-copy" onclick="copyLink(this)">Copier le lien du kit</button>
                 </div>
             </div>
@@ -171,7 +178,9 @@
                 <img src="https://via.placeholder.com/512?text=Prochain+Kit" alt="Nouveau Kit" class="kit-preview">
             </div>
             <div class="card-info">
-                <h3>Nouveau Projet</h3>
+                <div class="title-row">
+                    <h3>Nouveau Projet</h3>
+                </div>
                 <div class="action-box">
                     <input type="text" value="" data-filename="nouveau-kit.jpg" class="kit-url" readonly>
                     <button class="btn-copy" onclick="copyLink(this)">Copier le lien du kit</button>
@@ -184,10 +193,10 @@
     <script>
         // --- SCRIPT D'AUTOMATISATION DES LIENS ---
         document.addEventListener("DOMContentLoaded", function() {
-            // Détecte l'URL de base de ta page GitHub (indépendamment du chemin index.html)
+            // Détecte la base de l'URL actuelle (ex: https://ton-pseudo.github.io/ton-repo/)
             let currentUrl = window.location.href;
             
-            // On s'assure d'avoir le dossier racine
+            // Si l'URL finit par index.html, on l'enlève pour avoir le dossier racine
             let baseUrl = currentUrl.substring(0, currentUrl.lastIndexOf("/") + 1);
 
             const kitInputs = document.querySelectorAll('.kit-url');
@@ -195,27 +204,26 @@
             kitInputs.forEach(input => {
                 const filename = input.getAttribute('data-filename');
                 if(filename) {
-                    // On combine la base de l'URL avec le nom du fichier pour créer le lien direct
+                    // On combine la base de l'URL avec le nom du fichier
                     input.value = baseUrl + filename;
                 }
             });
         });
 
-        // --- FONCTION DE COPIE AVEC EFFET VISUEL ---
+        // --- FONCTION DE COPIE ---
         function copyLink(btn) {
             const input = btn.previousElementSibling;
             
-            // Sélection et copie du texte
+            // Copie dans le presse-papier
             input.select();
-            input.setSelectionRange(0, 99999); // Compatibilité mobile
+            input.setSelectionRange(0, 99999); // Pour mobile
             navigator.clipboard.writeText(input.value);
             
-            // Animation du bouton pour confirmation
+            // Animation du bouton
             const originalText = btn.innerText;
             btn.innerText = "Lien Copié ! ✅";
             btn.classList.add('btn-success');
             
-            // Retour à l'état initial après 2.5 secondes
             setTimeout(() => {
                 btn.innerText = originalText;
                 btn.classList.remove('btn-success');
