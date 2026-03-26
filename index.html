@@ -1,227 +1,201 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="mg">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio DLS Kits | Collection Personnalisée</title>
+    <title>DLS Kits Madagascar | Portfolio</title>
     <style>
-        /* --- STYLE CSS --- */
+        /* --- DESIGN PROFESSIONNEL --- */
         body {
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             margin: 0;
-            background-color: #f0f2f5;
-            color: #1c1e21;
+            background-color: #f4f7f6;
+            color: #333;
         }
 
         header {
-            background: linear-gradient(135deg, #1a1a1a 0%, #333 100%);
+            background: linear-gradient(45deg, #1a1a1a, #c1272d);
             color: white;
             text-align: center;
-            padding: 60px 20px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            padding: 50px 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
         }
 
-        header h1 {
-            margin: 0;
-            font-size: 2.5rem;
-            letter-spacing: 1px;
-        }
+        header h1 { margin: 0; font-size: 2.2rem; }
+        header p { opacity: 0.9; margin-top: 10px; }
 
         .grid-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
             padding: 40px;
             max-width: 1200px;
             margin: 0 auto;
         }
 
-        /* Carte du Kit */
+        /* Cartes des Kits */
         .card {
             background: white;
-            border-radius: 15px;
+            border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 1px solid #e0e0e0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: 0.3s ease;
+            display: flex;
+            flex-direction: column;
         }
 
-        .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
-        }
+        .card:hover { transform: translateY(-8px); box-shadow: 0 12px 25px rgba(0,0,0,0.15); }
 
-        .image-container {
+        .img-box {
             width: 100%;
+            aspect-ratio: 1 / 1;
             overflow: hidden;
             background: #eee;
-            aspect-ratio: 1 / 1; /* Force l'image à être carrée */
+            position: relative;
         }
 
-        .kit-preview {
+        .badge-v {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #27ae60;
+            color: white;
+            font-size: 10px;
+            padding: 4px 8px;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+
+        .kit-img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.5s ease;
+            transition: transform 0.5s;
         }
 
-        .card:hover .kit-preview {
-            transform: scale(1.1); /* Effet de zoom au survol */
-        }
+        .card:hover .kit-img { transform: scale(1.1); }
 
-        .card-info {
-            padding: 20px;
-        }
+        .card-content { padding: 20px; }
 
-        .card-info h3 {
-            margin: 0 0 15px 0;
-            font-size: 1.25rem;
-            color: #2c3e50;
-        }
+        .card-content h3 { margin: 0 0 10px; font-size: 1.1rem; color: #2c3e50; }
 
-        /* Zone de lien et bouton */
-        .action-box {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
+        /* Système de lien */
+        .copy-section { display: flex; flex-direction: column; gap: 8px; }
 
-        .kit-url {
+        .url-field {
             width: 100%;
-            padding: 10px;
-            border: 1px dashed #bdc3c7;
-            border-radius: 6px;
-            background: #f8f9fa;
-            font-size: 0.8rem;
-            color: #7f8c8d;
+            padding: 8px;
+            font-size: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background: #f9f9f9;
+            color: #666;
             box-sizing: border-box;
         }
 
         .btn-copy {
-            background-color: #e63946; /* Rouge Barea */
+            background: #e63946;
             color: white;
             border: none;
-            padding: 12px;
-            border-radius: 8px;
+            padding: 10px;
+            border-radius: 6px;
             font-weight: bold;
             cursor: pointer;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            font-size: 0.9rem;
+            transition: 0.3s;
         }
 
-        .btn-copy:hover {
-            background-color: #c1272d;
-            box-shadow: 0 4px 12px rgba(230, 57, 70, 0.3);
-        }
+        .btn-copy:hover { background: #c1272d; }
+        .btn-success { background: #2a9d8f !important; }
 
-        .btn-success {
-            background-color: #2a9d8f !important;
-        }
-
-        @media (max-width: 600px) {
-            .grid-container {
-                padding: 20px;
-            }
-        }
+        footer { text-align: center; padding: 30px; color: #888; font-size: 0.9rem; }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>DLS KITS PORTFOLIO</h1>
-        <p>Collection de kits personnalisés pour Dream League Soccer</p>
+        <h1>DLS KITS CREATIONS</h1>
+        <p>Kits 512x512 prêts pour Dream League Soccer 2026</p>
     </header>
 
     <main class="grid-container">
         
         <div class="card">
-            <div class="image-container">
-                <img src="44206.jpg" alt="DLS Kit Madagascar" class="kit-preview">
+            <div class="img-box">
+                <span class="badge-v">512x512 OK</span>
+                <img src="44206.jpg" alt="Kit DLS 44206" class="kit-img">
             </div>
-            <div class="card-info">
-                <h3>Madagascar Barea 25-26</h3>
-                <div class="action-box">
-                    <input type="text" value="" data-filename="44206.jpg" class="kit-url" readonly>
-                    <button class="btn-copy" onclick="copyLink(this)">Copier le lien du kit</button>
+            <div class="card-content">
+                <h3>Madagascar Home Kit</h3>
+                <div class="copy-section">
+                    <input type="text" value="" data-file="44206.jpg" class="url-field" readonly>
+                    <button class="btn-copy" onclick="copyAction(this)">COPIER LE LIEN</button>
                 </div>
             </div>
         </div>
 
         <div class="card">
-            <div class="image-container">
-                <img src="44209.jpg" alt="DLS Kit Nouveau Projet" class="kit-preview">
+            <div class="img-box">
+                <span class="badge-v">512x512 OK</span>
+                <img src="44209.jpg" alt="Kit DLS 44209" class="kit-img">
             </div>
-            <div class="card-info">
-                <h3>Nouveau Projet (Domicile)</h3>
-                <div class="action-box">
-                    <input type="text" value="" data-filename="44209.jpg" class="kit-url" readonly>
-                    <button class="btn-copy" onclick="copyLink(this)">Copier le lien du kit</button>
+            <div class="card-content">
+                <h3>Madagascar Away Kit</h3>
+                <div class="copy-section">
+                    <input type="text" value="" data-file="44209.jpg" class="url-field" readonly>
+                    <button class="btn-copy" onclick="copyAction(this)">COPIER LE LIEN</button>
                 </div>
             </div>
         </div>
 
         <div class="card">
-            <div class="image-container">
-                <img src="44235.jpg" alt="DLS Kit Troisième Projet" class="kit-preview">
+            <div class="img-box">
+                <span class="badge-v">512x512 OK</span>
+                <img src="44235.png" alt="Kit DLS 44235" class="kit-img">
             </div>
-            <div class="card-info">
-                <h3>Projet Extérieur / Third</h3>
-                <div class="action-box">
-                    <input type="text" value="" data-filename="44235.jpg" class="kit-url" readonly>
-                    <button class="btn-copy" onclick="copyLink(this)">Copier le lien du kit</button>
+            <div class="card-content">
+                <h3>Kit Spécial Edition</h3>
+                <div class="copy-section">
+                    <input type="text" value="" data-file="44235.png" class="url-field" readonly>
+                    <button class="btn-copy" onclick="copyAction(this)">COPIER LE LIEN</button>
                 </div>
             </div>
         </div>
 
     </main>
 
+    <footer>
+        <p>&copy; 2026 - Portfolio Développeur Fullstack EMIT</p>
+    </footer>
+
     <script>
-        // --- SCRIPT D'AUTOMATISATION DES LIENS (Intelligent) ---
+        // Génération automatique des URLs GitHub Pages
         document.addEventListener("DOMContentLoaded", function() {
-            // Détecte la base de l'URL actuelle (ex: https://ton-pseudo.github.io/ton-repo/)
             let currentUrl = window.location.href;
-            
-            // Si l'URL finit par index.html, on l'enlève pour avoir le dossier racine
             let baseUrl = currentUrl.substring(0, currentUrl.lastIndexOf("/") + 1);
 
-            // Gère le cas spécifique où le site est ouvert directement sans serveur (file://)
-            if (currentUrl.startsWith('file://')) {
-                baseUrl = ""; // Laisse vide pour éviter des liens erronés en local
-                alert("Attention : Pour tester les liens DLS, hébergez le site sur GitHub Pages ou un serveur local.");
-            }
-
-            const kitInputs = document.querySelectorAll('.kit-url');
-
-            kitInputs.forEach(input => {
-                const filename = input.getAttribute('data-filename');
+            document.querySelectorAll('.url-field').forEach(input => {
+                const filename = input.getAttribute('data-file');
                 if(filename) {
-                    // On combine la base de l'URL avec le nom du fichier
-                    // Si baseUrl est vide (file://), on met juste le nom du fichier
-                    input.value = baseUrl ? baseUrl + filename : filename;
+                    input.value = baseUrl + filename;
                 }
             });
         });
 
-        // --- FONCTION DE COPIE INTERACTIVE ---
-        function copyLink(btn) {
+        // Fonction de copie
+        function copyAction(btn) {
             const input = btn.previousElementSibling;
-            
-            // Copie dans le presse-papier
             input.select();
-            input.setSelectionRange(0, 99999); // Pour mobile
+            input.setSelectionRange(0, 99999);
             navigator.clipboard.writeText(input.value);
             
-            // Animation du bouton pour confirmer
-            const originalText = btn.innerText;
-            btn.innerText = "Lien Copié ! ✅";
+            const oldText = btn.innerText;
+            btn.innerText = "COPIÉ ! ✅";
             btn.classList.add('btn-success');
             
-            // Remet le bouton à son état initial après 2.5 secondes
             setTimeout(() => {
-                btn.innerText = originalText;
+                btn.innerText = oldText;
                 btn.classList.remove('btn-success');
-            }, 2500);
+            }, 2000);
         }
     </script>
 
