@@ -1,2 +1,208 @@
-# index.html
-Kit-logo
+<!DOCTYPE html>
+<html lang="mg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio DLS Kits | Madagascar</title>
+    <style>
+        /* --- STYLE CSS --- */
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            background-color: #f0f2f5;
+            color: #1c1e21;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1a1a1a 0%, #333 100%);
+            color: white;
+            text-align: center;
+            padding: 60px 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            letter-spacing: 1px;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            padding: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Carte du Kit */
+        .card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #e0e0e0;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+
+        .image-container {
+            width: 100%;
+            overflow: hidden;
+            background: #eee;
+            aspect-ratio: 1 / 1;
+        }
+
+        .kit-preview {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .card:hover .kit-preview {
+            transform: scale(1.1);
+        }
+
+        .card-info {
+            padding: 20px;
+        }
+
+        .card-info h3 {
+            margin: 0 0 15px 0;
+            font-size: 1.25rem;
+            color: #2c3e50;
+        }
+
+        /* Zone de lien et bouton */
+        .action-box {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .kit-url {
+            width: 100%;
+            padding: 10px;
+            border: 1px dashed #bdc3c7;
+            border-radius: 6px;
+            background: #f8f9fa;
+            font-size: 0.8rem;
+            color: #7f8c8d;
+            box-sizing: border-box;
+        }
+
+        .btn-copy {
+            background-color: #e63946; /* Rouge Barea */
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+
+        .btn-copy:hover {
+            background-color: #c1272d;
+            box-shadow: 0 4px 12px rgba(230, 57, 70, 0.3);
+        }
+
+        .btn-success {
+            background-color: #2a9d8f !important;
+        }
+
+        @media (max-width: 600px) {
+            .grid-container {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>DLS KITS PORTFOLIO</h1>
+        <p>Collection de kits personnalisés pour Dream League Soccer</p>
+    </header>
+
+    <main class="grid-container">
+        
+        <div class="card">
+            <div class="image-container">
+                <img src="kit-logo1.jpg" alt="DLS Kit Madagascar" class="kit-preview">
+            </div>
+            <div class="card-info">
+                <h3>Madagascar Barea 25-26</h3>
+                <div class="action-box">
+                    <input type="text" value="" data-filename="kit-logo1.jpg" class="kit-url" readonly>
+                    <button class="btn-copy" onclick="copyLink(this)">Copier le lien du kit</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="image-container">
+                <img src="https://via.placeholder.com/512?text=Prochain+Kit" alt="Nouveau Kit" class="kit-preview">
+            </div>
+            <div class="card-info">
+                <h3>Nouveau Projet</h3>
+                <div class="action-box">
+                    <input type="text" value="" data-filename="nouveau-kit.jpg" class="kit-url" readonly>
+                    <button class="btn-copy" onclick="copyLink(this)">Copier le lien du kit</button>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        // --- SCRIPT D'AUTOMATISATION DES LIENS ---
+        document.addEventListener("DOMContentLoaded", function() {
+            // Détecte la base de l'URL actuelle (ex: https://ton-pseudo.github.io/ton-repo/)
+            let currentUrl = window.location.href;
+            
+            // Si l'URL finit par index.html, on l'enlève pour avoir le dossier racine
+            let baseUrl = currentUrl.substring(0, currentUrl.lastIndexOf("/") + 1);
+
+            const kitInputs = document.querySelectorAll('.kit-url');
+
+            kitInputs.forEach(input => {
+                const filename = input.getAttribute('data-filename');
+                if(filename) {
+                    // On combine la base de l'URL avec le nom du fichier
+                    input.value = baseUrl + filename;
+                }
+            });
+        });
+
+        // --- FONCTION DE COPIE ---
+        function copyLink(btn) {
+            const input = btn.previousElementSibling;
+            
+            // Copie dans le presse-papier
+            input.select();
+            input.setSelectionRange(0, 99999); // Pour mobile
+            navigator.clipboard.writeText(input.value);
+            
+            // Animation du bouton
+            const originalText = btn.innerText;
+            btn.innerText = "Lien Copié ! ✅";
+            btn.classList.add('btn-success');
+            
+            setTimeout(() => {
+                btn.innerText = originalText;
+                btn.classList.remove('btn-success');
+            }, 2500);
+        }
+    </script>
+
+</body>
+</html>
